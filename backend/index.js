@@ -5,6 +5,8 @@ import veterinarioRoutes from "./routes/veterinarioRoutes.js";
 
 const app = express();
 
+app.use(express.json()); //Como le envio los datos al server
+
 conectarDB();
 
 app.use("/api/veterinarios", veterinarioRoutes);
