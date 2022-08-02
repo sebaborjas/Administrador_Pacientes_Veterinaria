@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+//Hasheo de pass
+import bcrypt from "bcrypt";
 import generarId from "../helpers/generarId.js";
 
 const vetrinarioSchema = mongoose.Schema({
@@ -34,6 +36,15 @@ const vetrinarioSchema = mongoose.Schema({
     type: Boolean,
     default: false,
   },
+});
+
+vetrinarioSchema.pre("save", async function (next) {
+  //Si ya esta hasheado no lo hace devuelta
+  if (!this.isModified("password")) {
+    next();
+  }
+  const salt = await bcrypt.genSalt(10);
+  this.password = await bcrypt.hash(this.password, salt);
 });
 
 const Veterinario = mongoose.model("Veterinario", vetrinarioSchema);
