@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom"
-import axios from "axios";
+import { useParams, Link } from "react-router-dom"
+import clienteAxios from "../config/axios";
 import Alerta from "../components/Alerta";
 
 const ConfirmarCuenta = () => {
@@ -15,14 +15,16 @@ const ConfirmarCuenta = () => {
   useEffect( ()=>{
     const confirmarCuenta = async () => {
       try {
-        const url = `http://localhost:4000/api/veterinarios/confirmar/${id}`
+        const url = `veterinarios/confirmar/${id}`
 
-        const { data } = await axios(url);
+        const { data } = await clienteAxios(url);
 
         setCuentaConfirmada(true);
-        setAlerta({msg: data.msg,
-        error: false
-      });
+
+        setAlerta(
+          {msg: data.msg,
+          error: false}
+        );
 
 
       } catch (error) {
@@ -46,10 +48,19 @@ const ConfirmarCuenta = () => {
         </h1>
       </div>
       <div className="mt-20 md:mt-5 shadow-lg px-5 py-10 rounded-xl bg-white">
-        {!cargando && 
+        {
+        //Si termino de cargar, muestra la alerta
+        !cargando && 
         <Alerta
           alerta={alerta}
-        />}
+        />
+        }
+
+        {cuentaConfirmada && (
+          <Link className="block text-center my-5 text-gray-500" to="/">
+          Iniciar Sesion
+          </Link>
+        )}
         
 
       </div>

@@ -11,7 +11,7 @@ app.use(express.json()); //Como le envio los datos al server
 
 conectarDB();
 
-const dominiosPermitidos = ["http://127.0.0.1:5173"];
+const dominiosPermitidos = [process.env.FRONTEND_URL];
 
 const corsOptions = {
   origin: function(origin,callback){
