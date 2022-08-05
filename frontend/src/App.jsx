@@ -4,7 +4,7 @@ import Login from "./paginas/Login";
 import Registrar from "./paginas/Registrar";
 import ConfirmarCuenta from "./paginas/ConfirmarCuenta";
 import OlvidePassword from "./paginas/OlvidePassword";
-import NuevoPassword from "./paginas/nuevoPassword";
+import NuevoPassword from "./paginas/NuevoPassword";
 
 function App() {
  
