@@ -38,7 +38,7 @@ const perfil = (req, res) => {
   //Veterinario ya esta guardado en node, esta en el authMiddleware
   const {veterinario} = req;
   
-  res.json({perfil: veterinario });
+  res.json(veterinario);
 };
 
 const confirmar = async (req, res) => {

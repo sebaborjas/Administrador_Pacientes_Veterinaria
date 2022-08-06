@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuth from '../hooks/useAuth'
 import clienteAxios from "../config/axios";
 import Alerta from "../components/Alerta";
@@ -9,6 +9,8 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [alerta, setAlerta] = useState({});
+
+  const navigate = useNavigate();
   
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,6 +26,9 @@ const Login = () => {
       //La autenticacion genera un token que va a ser almacenado en localStorage
       localStorage.setItem('token',data.token)
       setAlerta({msg: 'Ingresando...', error: false})
+      
+      //Redireccionamos el usuario hacia /admin
+      navigate('/admin')
     } catch (error) {
       setAlerta({msg: error.response.data.msg, error: true})
     } 
