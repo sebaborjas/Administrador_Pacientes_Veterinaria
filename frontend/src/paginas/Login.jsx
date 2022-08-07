@@ -10,6 +10,8 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [alerta, setAlerta] = useState({});
 
+  const { setAuth } = useAuth()
+
   const navigate = useNavigate();
   
   const handleSubmit = async (e) => {
@@ -26,7 +28,7 @@ const Login = () => {
       //La autenticacion genera un token que va a ser almacenado en localStorage
       localStorage.setItem('token',data.token)
       setAlerta({msg: 'Ingresando...', error: false})
-      
+      setAuth(data)
       //Redireccionamos el usuario hacia /admin
       navigate('/admin')
     } catch (error) {
