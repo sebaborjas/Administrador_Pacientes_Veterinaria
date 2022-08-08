@@ -52,10 +52,10 @@ const actualizarPaciente = async (req,res)=>{
   
   //Actualizar paciente
   paciente.nombre = req.body.nombre || paciente.nombre;
-  paciente.nombre = req.body.propietario || paciente.propietario;
-  paciente.nombre = req.body.email  || paciente.email;
-  paciente.nombre = req.body.fecha_alta || paciente.fecha_alta;
-  paciente.nombre = req.body.sintomas || paciente.sintomas;
+  paciente.propietario = req.body.propietario || paciente.propietario;
+  paciente.email = req.body.email  || paciente.email;
+  paciente.fecha_alta = req.body.fecha_alta || paciente.fecha_alta;
+  paciente.sintomas = req.body.sintomas || paciente.sintomas;
 
   try {
     const pacienteActualizado = await paciente.save();
