@@ -1,113 +1,110 @@
-import { useState, useEffect, createContext } from 'react';
-import clienteAxios from '../config/axios';
+import { useState, useEffect, createContext } from "react";
+import clienteAxios from "../config/axios";
 
 const AuthContext = createContext();
 
-const AuthProvider = ({children}) => {
-
+const AuthProvider = ({ children }) => {
   const [cargando, setCargando] = useState(true);
   const [auth, setAuth] = useState({});
 
-  useEffect( () => {
-    const autenticarUsuario = async ()=>{
-      const token = localStorage.getItem('token');
-      
-      if(!token) {
+  useEffect(() => {
+    const autenticarUsuario = async () => {
+      const token = localStorage.getItem("token");
+
+      if (!token) {
         setCargando(false);
-        return
+        return;
       }
 
       const config = {
         headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`
-        }
-      }
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      };
 
       try {
-        const { data } = await clienteAxios('/veterinarios/perfil', config);
+        const { data } = await clienteAxios("/veterinarios/perfil", config);
         //Si se autentica correctamente se guardan los datos del veterinario globalmente
         setAuth(data);
       } catch (error) {
         console.log(error.response.data.msg);
         //Si ocurre un error aseguremosno de que no esta autenticado
-        setAuth({})
+        setAuth({});
       }
 
       setCargando(false);
-
-    }
+    };
     autenticarUsuario();
-  },[]);
+  }, []);
 
   const cerrarSesion = () => {
-    localStorage.removeItem('token');
+    localStorage.removeItem("token");
     setAuth({});
-  }
+  };
 
-  const actualizarPerfil = async datos => {
+  const actualizarPerfil = async (datos) => {
+    const token = localStorage.getItem("token");
 
-    const token = localStorage.getItem('token');
-      
-    if(!token) {
+    if (!token) {
       setCargando(false);
-      return
+      return;
     }
 
     const config = {
       headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`
-      }
-    }
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    };
 
     try {
-      const url = `/veterinarios/perfil/${datos._id}`
+      const url = `/veterinarios/perfil/${datos._id}`;
       const { data } = await clienteAxios.put(url, datos, config);
       return {
         msg: "Almacenado correctamente",
-        error: false
-      }
+        error: false,
+      };
     } catch (error) {
       return {
         msg: error.response.data.msg,
-        error: true
-      }
+        error: true,
+      };
     }
-  }
+  };
 
   const guardarPassword = async (datos) => {
-    const token = localStorage.getItem('token');
-      
-    if(!token) {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
       setCargando(false);
-      return
+      return;
     }
 
     const config = {
       headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`
-      }
-    }
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    };
 
     try {
-      const url = "/veterinarios/actualizar-password"
+      const url = "/veterinarios/actualizar-password";
       const { data } = await clienteAxios.put(url, datos, config);
 
       return {
         msg: data.msg,
-        error: false
-      }
+        error: false,
+      };
     } catch (error) {
-      return{
+      return {
         msg: error.response.data.msg,
-        error: true
-      } 
+        error: true,
+      };
     }
-  }
+  };
 
-  return(
+  return (
     <AuthContext.Provider
       //Aqui en value pasamos los states que queremos poner a dispocision para que se puedan acceder en los componentes hijos
       value={{
@@ -116,14 +113,12 @@ const AuthProvider = ({children}) => {
         cargando,
         cerrarSesion,
         actualizarPerfil,
-        guardarPassword
+        guardarPassword,
       }}
     >
-
       {children}
     </AuthContext.Provider>
-
-  )
+  );
 };
 
 export { AuthProvider };
