@@ -1,13 +1,13 @@
-Hi! :wave:, I want to share my first MERN app, I hope you like it. For test the app read the following line.
+# Hola! :wave:, Me gustaria mostrarles mi primer app MERN. Espero que les guste
 
-:rotating_light: IMPORTANT :rotating_light: : To login use, user: "test@test.com", pass: "password" credentials. 
+## Sobre el desarrollo :man_technologist:
 
-If you want to create your own account you need to login on https://mailtrap.io with the next credentials to confirm your account : 
+Las depencencias utilizadas fueron:
 
-Email: "iesnqfanwfijrekdwj@kvhrs.com", pass: "APV-mail"
+- Mongoose (ODM) para la creacion de modelos/schemas y trabajar con mongoDB
 
-Thanks for your time!
-              
+- ExpressJS para la creacion del routing, controllers y middelwares, manejo de endpoints
+- ReactJS, React Router Dom para el desarrollo del Front End
+- Vite como empaquetador
 
-
--  [ :pushpin: Link](https://taupe-entremet-1d63aa.netlify.app)
+- ### [:pushpin:APV-Link](https://taupe-entremet-1d63aa.netlify.app)
