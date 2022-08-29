@@ -40,6 +40,10 @@ const Registrar = () => {
         msg: "Te has registrado correctamente, inicia sesion",
         error: false,
       });
+      //Redirijo el usuario a iniciar sesion
+      setTimeout(() => {
+        window.location.href = "/";
+      }, 2000);
     } catch (error) {
       setAlerta({ msg: error.response.data.msg, error: true });
     }

@@ -39,8 +39,11 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   const cerrarSesion = () => {
-    localStorage.removeItem("token");
-    setAuth({});
+    const confirmar = confirm("Deseas Cerrar Sesion?");
+    if (confirmar) {
+      localStorage.removeItem("token");
+      setAuth({});
+    }
   };
 
   const actualizarPerfil = async (datos) => {
