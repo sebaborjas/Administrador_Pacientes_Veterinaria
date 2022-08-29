@@ -6,11 +6,13 @@ import Spinner from "./Spinner";
 import { useState, useEffect } from "react";
 
 const ListadoPacientes = () => {
-  //const [pacientes, setPacientes] = useState([]);
   const [spinner, setSpinner] = useState(false);
 
   var { pacientes } = usePacientes();
 
+  /*
+   * Este useEffect me trae los pacientesc cargados en la base de datos la primera vez
+   */
   useEffect(() => {
     const obtenerPacientes = async () => {
       try {
@@ -39,6 +41,7 @@ const ListadoPacientes = () => {
 
   return (
     <>
+      {/* *Si hay pacientes muestro los pacientes, sino muestro mensaje de que no hay ninguno */}
       {pacientes.length ? (
         <>
           <h2 className="font-black text-3xl text-center">Listado Pacientes</h2>

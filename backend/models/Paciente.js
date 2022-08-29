@@ -1,34 +1,36 @@
 import mongoose from "mongoose";
 
-const pacienteSchema = mongoose.Schema({
-  nombre: {
+const pacienteSchema = mongoose.Schema(
+  {
+    nombre: {
       type: String,
       required: true,
-  },
-  propietario: {
+    },
+    propietario: {
       type: String,
       required: true,
-  },
-  email: {
-    type: String,
-    required: true,
-},
+    },
+    email: {
+      type: String,
+      required: true,
+    },
 
-  fecha_alta: {
+    fecha_ingreso: {
       type: Date,
       required: true,
       default: Date.now(),
-  },
-  sintomas: {
+    },
+    sintomas: {
       type: String,
       required: true,
-  },
-  veterinario: {
+    },
+    veterinario: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Veterinario"
-  }
-  }, {
-  timestamps: true,
+      ref: "Veterinario",
+    },
+  },
+  {
+    timestamps: true,
   }
 );
 

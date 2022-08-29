@@ -1,3 +1,5 @@
 MERN-Project-Documentation.txt
 .vscode
 /backend/.gitignore
+/backend/node_modules/
+/backend/.env
